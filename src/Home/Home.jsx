@@ -1,5 +1,6 @@
 import Banner from "./Banner/Banner";
 import Gallery from "./Gallery/Gallery";
+import ToyCategory from "./ToyCategory/ToyCategory";
 
 const Home = () => {
   return (
@@ -7,6 +8,7 @@ const Home = () => {
       <Banner></Banner>
       <div className="container mx-auto">
           <Gallery></Gallery>
+          <ToyCategory></ToyCategory>
       </div>
     </div>
   );

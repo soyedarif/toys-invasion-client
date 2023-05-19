@@ -1,17 +1,33 @@
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../public/logo.png";
+import logo from "/logo.png";
 
 const NavigationBar = () => {
   const navList = (
     <>
       <li>
-        <NavLink>Item 1</NavLink>
+        <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+          Home
+        </NavLink>
       </li>
       <li>
-      <NavLink>Item 2</NavLink>
+        <NavLink to="/allToys" className={({ isActive }) => (isActive ? "active" : "")}>
+          All Toys
+        </NavLink>
       </li>
       <li>
-      <NavLink>Item 3</NavLink>
+        <NavLink to="/myToys" className={({ isActive }) => (isActive ? "active" : "")}>
+          My Toys
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/addToy" className={({ isActive }) => (isActive ? "active" : "")}>
+          Add A Toy
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/blog" className={({ isActive }) => (isActive ? "active" : "")}>
+          Blog
+        </NavLink>
       </li>
     </>
   );
@@ -39,7 +55,7 @@ const NavigationBar = () => {
         <ul className="menu menu-horizontal px-1">{navList}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn btn-primary">Get started</a>
+        <Link to='/login' className="btn btn-primary">Log In</Link>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import NavigationBar from "../../shared/NavigationBar";
 import "./Banner.css";
-import bannerImg from '../../../public/b-img.png'
+import bannerImg from '/b-img.png'
 const Banner = () => {
   return (
     <div className="banner  overflow-hidden mb-24">
