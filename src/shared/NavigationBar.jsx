@@ -1,7 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "/logo.png";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthProvider";
 
 const NavigationBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
   const navList = (
     <>
       <li>
@@ -54,8 +58,13 @@ const NavigationBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navList}</ul>
       </div>
-      <div className="navbar-end">
-        <Link to='/login' className="btn btn-primary">Log In</Link>
+      <div className="navbar-end space-x-6">
+        <div className="avatar">
+          <div className="w-12 rounded">
+          <img src={user? user?.photoURL: `https://icon-library.com/images/no-user-image-icon/no-user-image-icon-0.jpg`} title={user?.displayName} />
+          </div>
+        </div>
+        {user ? <button onClick={logOut} className="btn btn-outline btn-warning">Logout</button> : <Link to='/login'><button className="btn btn-outline btn-warning">Login</button></Link>}
       </div>
     </div>
   );

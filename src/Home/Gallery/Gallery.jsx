@@ -4,7 +4,7 @@ import Photo from "./Photo";
 const Gallery = () => {
     const [photos,setPhotos]=useState([])
     useEffect(()=>{
-        fetch(`http://localhost:5000/toyGallery`)
+        fetch(`https://toys-invasion-server.vercel.app/toyGallery`)
         .then(res=>res.json())
         .then(data=>setPhotos(data))
     },[])
