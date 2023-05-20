@@ -1,9 +1,10 @@
+import NavigationBar from "../shared/NavigationBar";
 
 const MyToys = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <NavigationBar></NavigationBar>
+        </>
     );
 };
 

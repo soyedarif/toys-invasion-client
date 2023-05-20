@@ -4,7 +4,10 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 
 const NavigationBar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user,loading, logOut } = useContext(AuthContext);
+  if(loading){
+    return <div>loading</div>
+  }
 
   const navList = (
     <>

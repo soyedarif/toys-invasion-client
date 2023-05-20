@@ -1,9 +1,10 @@
+import NavigationBar from "../shared/NavigationBar";
 
 const AddToy = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <NavigationBar></NavigationBar>
+        </>
     );
 };
 

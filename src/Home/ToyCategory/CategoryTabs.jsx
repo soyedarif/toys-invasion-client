@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import Toys from "./Toys";
 
 function CategoryTabs() {
   const [category, setCategory] = useState("dc");
@@ -23,28 +24,34 @@ function CategoryTabs() {
         <p className="mb-4">Immerse Yourself in a World of Wonder and Play! Explore a captivating assortment of toys, <br /> each one a gateway to thrilling adventures and limitless possibilities.</p>
       </div>
       <Tabs selectedTabClassName="selected-tab">
-        <TabList className='text-center text-white bg-secondary rounded-xl'>
+        <TabList className='text-center mb-6 text-white bg-secondary rounded-xl'>
           <Tab onClick={() => setCategory("dc")}>DC</Tab>
           <Tab onClick={() => setCategory("marvel")}>Marvel</Tab>
           <Tab onClick={() => setCategory("anime")}>Anime</Tab>
         </TabList>
 
         <TabPanel>
-          {data.map(item => (
-            <div key={item.id}>{item.name}</div>
-          ))}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {data.map(item => (
+              <Toys key={item._id} item={item}></Toys>
+            ))}
+          </div>
         </TabPanel>
 
         <TabPanel>
-          {data.map(item => (
-            <div key={item.id}>{item.name}</div>
-          ))}
+        <div className="grid grid-cols-3 gap-4">
+            {data.map(item => (
+              <Toys key={item._id} item={item}></Toys>
+            ))}
+          </div>
         </TabPanel>
 
         <TabPanel>
-          {data.map(item => (
-            <div key={item.id}>{item.name}</div>
-          ))}
+          <div className="grid grid-cols-3 gap-4">
+            {data.map(item => (
+              <Toys key={item._id} item={item}></Toys>
+            ))}
+          </div>
         </TabPanel>
       </Tabs>
      </>
