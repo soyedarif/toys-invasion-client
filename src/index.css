@@ -6,3 +6,7 @@
 .active{
     background-color: primary;
 }
+.selected-tab {
+    background-color: #23aa92;
+    color: aliceblue;
+  }

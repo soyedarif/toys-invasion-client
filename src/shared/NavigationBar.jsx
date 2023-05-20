@@ -18,16 +18,16 @@ const NavigationBar = () => {
           All Toys
         </NavLink>
       </li>
-      <li>
+     {user && <li>
         <NavLink to="/myToys" className={({ isActive }) => (isActive ? "active" : "")}>
           My Toys
         </NavLink>
-      </li>
-      <li>
+      </li>}
+      {user && <li>
         <NavLink to="/addToy" className={({ isActive }) => (isActive ? "active" : "")}>
           Add A Toy
         </NavLink>
-      </li>
+      </li>}
       <li>
         <NavLink to="/blog" className={({ isActive }) => (isActive ? "active" : "")}>
           Blog
