@@ -1,7 +1,6 @@
 import CategoryTabs from "./ToyCategory/CategoryTabs";
 import Banner from "./Banner/Banner";
 import Gallery from "./Gallery/Gallery";
-import Footer from "../shared/Footer";
 
 const Home = () => {
   return (
@@ -12,7 +11,6 @@ const Home = () => {
         {/* <ToyCategory></ToyCategory> */}
         <CategoryTabs></CategoryTabs>
       </div>
-        <Footer></Footer>
     </div>
   );
 };

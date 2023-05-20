@@ -4,7 +4,6 @@ import SingleToy from "./SingleToy";
 
 const AllToys = () => {
   const allToys = useLoaderData();
-  console.log(allToys);
   return (
     <>
       <NavigationBar></NavigationBar>

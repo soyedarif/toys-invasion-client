@@ -6,16 +6,19 @@ import Toys from "./Toys";
 function CategoryTabs() {
   const [category, setCategory] = useState("dc");
   const [data, setData] = useState([]);
+ 
+
 
   useEffect(() => {
-    fetchData();
+    fetch(`http://localhost:5000/toys?category=${category}`)
+    .then(res=>res.json())
+    .then(data=>setData(data))
   }, [category]);
 
-  const fetchData = async () => {
-    const response = await fetch(`http://localhost:5000/toys?category=${category}`);
-    const jsonData = await response.json();
-    setData(jsonData);
-  };
+ 
+
+
+
 
   return (
      <>
@@ -31,9 +34,9 @@ function CategoryTabs() {
         </TabList>
 
         <TabPanel>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid md:grid lg:grid-cols-3 gap-4">
             {data.map(item => (
-              <Toys key={item._id} item={item}></Toys>
+              <Toys key={item._id}  item={item}></Toys>
             ))}
           </div>
         </TabPanel>
@@ -41,7 +44,7 @@ function CategoryTabs() {
         <TabPanel>
         <div className="grid grid-cols-3 gap-4">
             {data.map(item => (
-              <Toys key={item._id} item={item}></Toys>
+              <Toys key={item._id}  item={item}></Toys>
             ))}
           </div>
         </TabPanel>
@@ -49,7 +52,7 @@ function CategoryTabs() {
         <TabPanel>
           <div className="grid grid-cols-3 gap-4">
             {data.map(item => (
-              <Toys key={item._id} item={item}></Toys>
+              <Toys key={item._id}  item={item}></Toys>
             ))}
           </div>
         </TabPanel>

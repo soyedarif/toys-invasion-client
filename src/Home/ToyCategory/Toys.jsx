@@ -1,9 +1,10 @@
 import React from "react";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import { Link } from "react-router-dom";
 
-const Toys = ({ item }) => {
-  const { name, url, price, ratings } = item;
+const Toys = ({ item ,setUniqueId}) => {
+  const {_id, name, url, price, ratings } = item;
   return (
     <div className="card card-side bg-base-100 shadow-xl">
       <figure className="w-1/2">
@@ -14,7 +15,7 @@ const Toys = ({ item }) => {
         <p>Price: ${price}</p>
         <Rating className=""  value={ratings} readOnly />
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">View Details</button>
+          <Link to={`/toys/${_id}`} className="btn btn-primary">View Details</Link>
         </div>
       </div>
     </div>

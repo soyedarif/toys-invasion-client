@@ -8,6 +8,7 @@ import AddToy from "../components/AddToy";
 import MyToys from "../components/MyToys";
 import PrivateRoute from "./PrivateRoute";
 import AllToys from "../components/AllToys/AllToys";
+import ViewToy from "../components/ViewToy";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,11 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path:'toys/:id',
+        element:<ViewToy></ViewToy>,
+        loader:({params})=>fetch(`http://localhost:5000/toys/${params.id}`)
+      }
     ],
   },
 ]);
