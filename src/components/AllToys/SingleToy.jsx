@@ -27,7 +27,7 @@ const SingleToy = ({singleToy}) => {
           <br/>
           <span className="badge badge-ghost badge-sm">Available: {quantity}</span>
         </td>
-        <td>{seller?.seller}</td>
+        <td>{seller}</td>
         <th>
           <Link to={`/toys/${_id}`} className="btn btn-border btn-xs">details</Link>
         </th>

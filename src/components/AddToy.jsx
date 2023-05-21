@@ -1,13 +1,57 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import NavigationBar from "../shared/NavigationBar";
+import { AuthContext } from "../context/AuthProvider";
+import { toast } from "react-toastify";
+
 
 const AddToy = () => {
+  const {user}=useContext(AuthContext)
   const [category, setCategory] = useState('');
-  const handleForm=(e)=>{
 
+  const handleAddToy=(e)=>{
 e.preventDefault()
 const form=e.target;
+const name=form.name.value;
+const seller=form.seller.value;
+const price=form.price.value;
+const quantity=form.quantity.value;
+const url=form.photoURL.value;
+const email=form.email.value;
 const ratings=form.ratings.value;
+const description=form.description.value;
+const toy={
+  name,
+  seller,
+  quantity,
+  url,
+  price,
+  email,
+  ratings,
+  category,
+  description
+  
+}
+console.log(toy);
+fetch("http://localhost:5000/toys", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(toy)
+    })
+      .then(res => res.json())
+      .then(data => {
+        if(data.insertedId){
+          toast.success('Toy Added!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+        }
+      });
 
 }
 const handleCategoryChange = (e) => {
@@ -18,7 +62,7 @@ const handleCategoryChange = (e) => {
       <NavigationBar></NavigationBar>
       <h2 className=" text-4xl mb-4 text-center p-4">Add Your Favourite Toy!</h2>
       <div className="container mx-auto">
-        <form onSubmit={handleForm} className=" mb-8 ">
+        <form onSubmit={handleAddToy} className=" mb-8 ">
           <div className="grid grid-cols-2 gap-4 mb-8">
             <div className="form-control">
               <label className="label">
@@ -30,7 +74,8 @@ const handleCategoryChange = (e) => {
               <label className="label">
                 <span className="label-text">Seller Name</span>
               </label>
-              <input type="text" placeholder="seller" name="seller" className="input input-bordered" />
+              <input type="text" placeholder="seller" defaultValue={user?.displayName
+} name="seller" className="input input-bordered" />
             </div>
             <div className="form-control">
               <label className="label">
@@ -40,15 +85,21 @@ const handleCategoryChange = (e) => {
             </div>
             <div className="form-control">
               <label className="label">
+                <span className="label-text">Price</span>
+              </label>
+              <input type="number" placeholder="price" name="price" className="input input-bordered" />
+            </div>
+            <div className="form-control">
+              <label className="label">
                 <span className="label-text">Photo URL</span>
               </label>
-              <input type="text" placeholder="name" name="name" className="input input-bordered" />
+              <input type="text" placeholder="photo URL" name="photoURL" className="input input-bordered" />
             </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
-              <input type="email" placeholder="email" required name="email" className="input input-bordered" />
+              <input type="email" defaultValue={user?.email} placeholder="email" required name="email" className="input input-bordered" />
             </div>
             <div className="form-control">
               <label className="label">
@@ -62,7 +113,7 @@ const handleCategoryChange = (e) => {
           <span className="label-text">Pick Category</span>
         </label>
         <select className="select select-bordered" onChange={handleCategoryChange}>
-          <option value="" disabled >
+          <option value=""  >
             Pick one
           </option>
           <option value="dc">DC</option>
@@ -75,7 +126,7 @@ const handleCategoryChange = (e) => {
               <label className="label">
                 <span className="label-text">Description</span>
               </label>
-              <input type="number" placeholder="description" name="description" className="input input-bordered" />
+              <input type="text" placeholder="description" name="description" className="input input-bordered" />
             </div>
           </div>
             <input className="btn  w-full" type="submit" value="Add Your Toy" />
