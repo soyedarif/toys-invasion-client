@@ -59,7 +59,9 @@ const handleCategoryChange = (e) => {
 };
   return (
     <>
-      <NavigationBar></NavigationBar>
+      <div className="bg-secondary">
+        <NavigationBar />
+      </div>
       <h2 className=" text-4xl mb-4 text-center p-4">Add Your Favourite Toy!</h2>
       <div className="container mx-auto">
         <form onSubmit={handleAddToy} className=" mb-8 ">

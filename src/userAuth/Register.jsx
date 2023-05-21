@@ -3,13 +3,16 @@ import NavigationBar from "../shared/NavigationBar";
 import { FaGoogle } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
+import useTitle from "../hooks/useTitle";
 
 
 const Register = () => {
-    const {googleLogin,registerUser,updateUserProfile}=useContext(AuthContext)
-    const navigate = useNavigate();
-    const location= useLocation();
-    const from=location?.state?.from?.pathname || '/'
+  const {googleLogin,registerUser,updateUserProfile}=useContext(AuthContext)
+  const navigate = useNavigate();
+  const location= useLocation();
+  
+  const from=location?.state?.from?.pathname || '/'
+  useTitle('Register')
 
     const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -61,7 +64,9 @@ const Register = () => {
     }
     return (
         <>
-        <NavigationBar></NavigationBar>
+        <div className="bg-secondary">
+        <NavigationBar />
+      </div>
         <div className="hero min-h-screen bg-base-200">
         <div className="hero-content  gap-7 flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">

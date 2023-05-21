@@ -3,14 +3,17 @@ import NavigationBar from "../shared/NavigationBar";
 import { FaGoogle } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthProvider";
+import useTitle from "../hooks/useTitle";
 
 
 const Login = () => {
+
     const {signinUser,googleLogin}=useContext(AuthContext)
     const navigate = useNavigate();
     const location= useLocation();
     const from=location?.state?.from?.pathname || '/'
     const [error,setError]=useState('')
+    useTitle('Login')
 
     const handleLogin=e=>{
         e.preventDefault()
@@ -35,7 +38,9 @@ const Login = () => {
     }
     return (
         <>
-        <NavigationBar></NavigationBar>
+        <div className="bg-secondary">
+        <NavigationBar />
+      </div>
         <div className="hero min-h-screen bg-base-200">
         <div className="hero-content  gap-7 flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">

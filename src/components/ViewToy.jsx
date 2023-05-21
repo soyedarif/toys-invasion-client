@@ -10,7 +10,9 @@ const ViewToy = () => {
     const {name,quantity,category,price,url,seller,ratings,_id,description,email}=toy
     return (
         <>
-                  <NavigationBar></NavigationBar>
+                  <div className="bg-secondary">
+        <NavigationBar />
+      </div>
                   <div className="hero min-h-screen bg-base-200">
   <div className="hero-content flex-col space-x-12 lg:flex-row">
     <img src={url} className="max-w-sm rounded-lg shadow-2xl" />

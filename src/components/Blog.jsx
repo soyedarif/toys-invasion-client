@@ -1,11 +1,13 @@
-import NavigationBar from '../shared/NavigationBar';
+import NavigationBar from "../shared/NavigationBar";
 
 const Blog = () => {
-    return (
-        <>
-            <NavigationBar></NavigationBar>
-        </>
-    );
+  return (
+    <>
+      <div className="bg-secondary">
+        <NavigationBar />
+      </div>
+    </>
+  );
 };
 
 export default Blog;

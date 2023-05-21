@@ -5,10 +5,10 @@ import Blog from "../components/Blog";
 import Login from "../userAuth/Login";
 import Register from "../userAuth/Register";
 import AddToy from "../components/AddToy";
-import MyToys from "../components/MyToys";
 import PrivateRoute from "./PrivateRoute";
 import AllToys from "../components/AllToys/AllToys";
 import ViewToy from "../components/ViewToy";
+import MyToys from "../components/MyToys/MyToys";
 
 const router = createBrowserRouter([
   {

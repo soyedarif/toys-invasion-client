@@ -24,7 +24,9 @@ const AllToys = () => {
 
   return (
     <>
-      <NavigationBar />
+      <div className="bg-secondary">
+        <NavigationBar />
+      </div>
       <div className="overflow-x-auto w-full">
         <table className="table w-full">
           <thead>

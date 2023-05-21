@@ -6,7 +6,7 @@ import { AuthContext } from "../context/AuthProvider";
 const NavigationBar = () => {
   const { user,loading, logOut } = useContext(AuthContext);
   if(loading){
-    return <div>loading</div>
+    return <progress className="progress  w-full"></progress>
   }
 
   const navList = (
