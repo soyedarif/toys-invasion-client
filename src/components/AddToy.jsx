@@ -51,6 +51,7 @@ fetch("http://localhost:5000/toys", {
             theme: "light",
             });
         }
+        form.reset()
       });
 
 }

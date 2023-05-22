@@ -2,12 +2,13 @@ import { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 import { toast } from 'react-toastify';
+import Loading from '../components/Loading';
 
 const PrivateRoute = ({children}) => {
     const {loading,user}= useContext(AuthContext)
     const location = useLocation();
     if(loading){
-        return <div>Loading</div>
+        return <Loading/>
     }
     if(!user){
         toast.error('Please login to View', {
