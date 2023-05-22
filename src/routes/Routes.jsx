@@ -9,7 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import AllToys from "../components/AllToys/AllToys";
 import ViewToy from "../components/ViewToy";
 import MyToys from "../components/MyToys/MyToys";
-import ErrorPage from "../components/ErrorPage";
+import ErrorPage from "../components/utilitiesComp/ErrorPage"
 
 const router = createBrowserRouter([
   {

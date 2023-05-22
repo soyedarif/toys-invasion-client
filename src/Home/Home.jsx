@@ -5,6 +5,8 @@ import Gallery from "./Gallery/Gallery";
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Features from "./Features/Features";
+import Promotion from "./Promotion/Promotion";
 
 
 
@@ -22,7 +24,8 @@ const Home = () => {
         <Gallery></Gallery>
         {/* <ToyCategory></ToyCategory> */}
         <CategoryTabs></CategoryTabs>
-
+        <Features></Features>
+        <Promotion></Promotion>
       </div>
     </div>
   );

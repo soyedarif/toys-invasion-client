@@ -29,7 +29,7 @@ function CategoryTabs() {
         </TabList>
 
         <TabPanel>
-          <div className="grid md:grid lg:grid-cols-3 gap-4">
+          <div className="grid  lg:grid-cols-3 gap-4">
             {data.map(item => (
               <Toys key={item._id} item={item}></Toys>
             ))}
@@ -37,7 +37,7 @@ function CategoryTabs() {
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid  lg:grid-cols-3 gap-4">
             {data.map(item => (
               <Toys key={item._id} item={item}></Toys>
             ))}
@@ -45,7 +45,7 @@ function CategoryTabs() {
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid  lg:grid-cols-3 gap-4">
             {data.map(item => (
               <Toys key={item._id} item={item}></Toys>
             ))}
