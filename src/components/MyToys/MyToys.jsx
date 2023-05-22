@@ -5,6 +5,7 @@ import useTitle from "../../hooks/useTitle";
 import MyToy from "./ToyView";
 import ToyView from "./ToyView";
 import Loading from "../Loading";
+import Swal from "sweetalert2";
 
 const MyToys = () => {
   const { user, loading } = useContext(AuthContext);
@@ -20,7 +21,30 @@ const MyToys = () => {
   }, [sort]);
 
   const handleDeleteData = id => {
-    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(result => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/toys/${id}`, {
+          method: "DELETE",
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your Toy has been deleted.", "success");
+              const remaining=myToys.filter(t=>t._id!==id)
+                setMyToys(remaining)
+              
+            }
+          });
+      }
+    });
   };
   const handleSortOptionChange = event => {
     setSort(event.target.value);
@@ -32,7 +56,9 @@ const MyToys = () => {
       </div>
       <h2 className=" text-4xl mb-4 text-center p-4">Explore Your Added Toys Here!</h2>
       <div className="text-center mb-4">
-        <label className="mr-4" htmlFor="sortOption">Sort by:</label>
+        <label className="mr-4" htmlFor="sortOption">
+          Sort by Price:
+        </label>
         <select className="rounded-lg bg-primary  text-white outline-0" id="sortOption" value={sort} onChange={handleSortOptionChange}>
           <option value="">Select an option</option>
           <option value="1">Price (Low to High)</option>
