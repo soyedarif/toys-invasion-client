@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ToyView = ({ toy, handleDeleteData }) => {
+const ToyView = ({ toy, handleDeleteData,handleUpdateDataID }) => {
   const { name, quantity, category, price, url, seller, _id, description } = toy;
  
   return (
@@ -28,7 +28,7 @@ const ToyView = ({ toy, handleDeleteData }) => {
         </td>
         <td>{seller}</td>
         <th>
-          <button className="btn">Update</button>
+          <label htmlFor="my-modal-3" onClick={()=>{handleUpdateDataID(_id)}} className="btn">Update</label>
         </th>
         <th>
           <button onClick={()=>handleDeleteData(_id)} className="btn btn-circle btn-outline btn-error">

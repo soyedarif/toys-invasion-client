@@ -6,10 +6,12 @@ import MyToy from "./ToyView";
 import ToyView from "./ToyView";
 import Loading from "../Loading";
 import Swal from "sweetalert2";
+import Modal from "../Modal/Modal";
 
 const MyToys = () => {
   const { user, loading } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
+  const [toyData,setToyData]=useState([])
   const [sort, setSort] = useState("");
   useTitle("MyToys");
 
@@ -46,6 +48,11 @@ const MyToys = () => {
       }
     });
   };
+  const handleUpdateDataID=id=>{
+    fetch(`http://localhost:5000/toys/${id}`)
+    .then(res=>res.json())
+    .then(data=>setToyData(data))
+  }
   const handleSortOptionChange = event => {
     setSort(event.target.value);
   };
@@ -79,11 +86,12 @@ const MyToys = () => {
           </thead>
           <tbody>
             {myToys.map(toy => (
-              <ToyView handleDeleteData={handleDeleteData} key={toy._id} toy={toy}></ToyView>
+              <ToyView handleUpdateDataID={handleUpdateDataID} handleDeleteData={handleDeleteData} key={toy._id} toy={toy}></ToyView>
             ))}
           </tbody>
         </table>
       </div>
+      <Modal toyData={toyData}></Modal>
     </>
   );
 };
