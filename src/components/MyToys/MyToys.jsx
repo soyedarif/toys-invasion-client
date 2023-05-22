@@ -2,31 +2,36 @@ import { useContext, useEffect, useState } from "react";
 import NavigationBar from "../../shared/NavigationBar";
 import { AuthContext } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
-import MyToy from "./ToyView";
 import ToyView from "./ToyView";
-import Loading from "../Loading";
 import Swal from "sweetalert2";
 import Modal from "../Modal/Modal";
 
 const MyToys = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
   const [toyData, setToyData] = useState([]);
   const [sort, setSort] = useState("");
-  const [shouldchange, setShouldChange] = useState(true);
+  const [shouldChange, setShouldChange] = useState(false);
   useTitle("MyToys");
 
-  const url = `http://localhost:5000/toys?email=${user.email}&sort=${sort}`;
+  const url = `https://toys-invasion-server.vercel.app/toys?email=${user.email}&sort=${sort}`;
+
   useEffect(() => {
-    if (shouldchange) {
+    if (shouldChange || sort) {
       fetch(url)
         .then(res => res.json())
         .then(data => {
           setMyToys(data);
-          setShouldChange(!shouldchange);
+          if (shouldChange) {
+            setShouldChange(false);
+          }
         });
     }
-  }, [sort, shouldchange]);
+  }, [shouldChange, sort, url]);
+  
+  useEffect(() => {
+    setShouldChange(true);
+  }, [sort]);
 
   const handleDeleteData = id => {
     Swal.fire({
@@ -39,7 +44,7 @@ const MyToys = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(result => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/toys/${id}`, {
+        fetch(`https://toys-invasion-server.vercel.app/toys/${id}`, {
           method: "DELETE",
         })
           .then(res => res.json())
@@ -55,10 +60,11 @@ const MyToys = () => {
   };
 
   const handleUpdateDataID = id => {
-    fetch(`http://localhost:5000/toys/${id}`)
+    fetch(`https://toys-invasion-server.vercel.app/toys/${id}`)
       .then(res => res.json())
       .then(data => setToyData(data));
   };
+  /*  */
   const handleSortOptionChange = event => {
     setSort(event.target.value);
   };

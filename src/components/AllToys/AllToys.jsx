@@ -3,23 +3,21 @@ import NavigationBar from "../../shared/NavigationBar";
 import SingleToy from "./SingleToy";
 import { useEffect, useRef, useState } from "react";
 
-
 const AllToys = () => {
-  const [allToys,setAllToys]=useState([])
-  const searchRef=useRef(null)
-  const [search,setSearch]=useState('')
-  const navigation=useNavigation()
- 
-  useEffect(()=>{
-    fetch(`http://localhost:5000/toys?limit=20&search=${search}`)
-    .then(res=>res.json())
-    .then(data=>setAllToys(data))
-  },
-  [search])
-  const handleSearch=()=>{
+  const [allToys, setAllToys] = useState([]);
+  const searchRef = useRef(null);
+  const [search, setSearch] = useState("");
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    fetch(`https://toys-invasion-server.vercel.app/toys?limit=20&search=${search}`)
+      .then(res => res.json())
+      .then(data => setAllToys(data));
+  }, [search]);
+  const handleSearch = () => {
     console.log();
-    setSearch(searchRef.current.value)
-  }
+    setSearch(searchRef.current.value);
+  };
 
   return (
     <>

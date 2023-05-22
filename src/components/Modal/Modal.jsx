@@ -18,7 +18,7 @@ const Modal = ({ toyData, setShouldChange }) => {
       description,
     };
 
-    fetch(`http://localhost:5000/toys/${_id}`, {
+    fetch(`https://toys-invasion-server.vercel.app/toys/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

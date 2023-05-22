@@ -44,7 +44,6 @@ const router = createBrowserRouter([
       {
         path: "/allToys",
         element: <AllToys></AllToys>,
-        
       },
       {
         path: "/myToys",
@@ -55,10 +54,14 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:'toys/:id',
-        element:<PrivateRoute><ViewToy></ViewToy></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/toys/${params.id}`)
-      }
+        path: "toys/:id",
+        element: (
+          <PrivateRoute>
+            <ViewToy></ViewToy>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => fetch(`https://toys-invasion-server.vercel.app/toys/${params.id}`),
+      },
     ],
   },
 ]);
