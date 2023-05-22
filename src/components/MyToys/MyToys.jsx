@@ -11,16 +11,22 @@ import Modal from "../Modal/Modal";
 const MyToys = () => {
   const { user, loading } = useContext(AuthContext);
   const [myToys, setMyToys] = useState([]);
-  const [toyData,setToyData]=useState([])
+  const [toyData, setToyData] = useState([]);
   const [sort, setSort] = useState("");
+  const [shouldchange, setShouldChange] = useState(true);
   useTitle("MyToys");
 
   const url = `http://localhost:5000/toys?email=${user.email}&sort=${sort}`;
   useEffect(() => {
-    fetch(url)
-      .then(res => res.json())
-      .then(data => setMyToys(data));
-  }, [sort]);
+    if (shouldchange) {
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          setMyToys(data);
+          setShouldChange(!shouldchange);
+        });
+    }
+  }, [sort, shouldchange]);
 
   const handleDeleteData = id => {
     Swal.fire({
@@ -40,52 +46,19 @@ const MyToys = () => {
           .then(data => {
             if (data.deletedCount > 0) {
               Swal.fire("Deleted!", "Your Toy has been deleted.", "success");
-              const remaining=myToys.filter(t=>t._id!==id)
-                setMyToys(remaining)
-              
+              const remaining = myToys.filter(t => t._id !== id);
+              setMyToys(remaining);
             }
           });
       }
     });
   };
 
-  const handleUpdateToy = e => {
-    e.preventDefault();
-    const form = e.target;
-    const price = form.price.value;
-    const quantity = form.quantity.value;
-    const description = form.description.value;
-    const updatedToy = {
-      price,
-      quantity,
-      description,
-    };
-
-    fetch(`http://localhost:5000/toys/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedToy),
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.modifiedCount > 0) {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Your Toy has been Updated",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
-  };
-  const handleUpdateDataID=id=>{
+  const handleUpdateDataID = id => {
     fetch(`http://localhost:5000/toys/${id}`)
-    .then(res=>res.json())
-    .then(data=>setToyData(data))
-  }
+      .then(res => res.json())
+      .then(data => setToyData(data));
+  };
   const handleSortOptionChange = event => {
     setSort(event.target.value);
   };
@@ -124,7 +97,7 @@ const MyToys = () => {
           </tbody>
         </table>
       </div>
-      <Modal handleUpdateToy toyData={toyData}></Modal>
+      <Modal toyData={toyData} setShouldChange={setShouldChange}></Modal>
     </>
   );
 };

@@ -1,12 +1,15 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import NavigationBar from "../../shared/NavigationBar";
 import SingleToy from "./SingleToy";
 import { useEffect, useRef, useState } from "react";
+
 
 const AllToys = () => {
   const [allToys,setAllToys]=useState([])
   const searchRef=useRef(null)
   const [search,setSearch]=useState('')
+  const navigation=useNavigation()
+ 
   useEffect(()=>{
     fetch(`http://localhost:5000/toys?limit=20&search=${search}`)
     .then(res=>res.json())

@@ -1,7 +1,9 @@
+import { useRef } from "react";
 import Swal from "sweetalert2";
 
-const Modal = ({ toyData }) => {
+const Modal = ({ toyData, setShouldChange }) => {
   const { _id, price, quantity, description } = toyData;
+  const checkRef = useRef();
 
   const handleUpdateToy = e => {
     e.preventDefault();
@@ -9,6 +11,7 @@ const Modal = ({ toyData }) => {
     const price = form.price.value;
     const quantity = form.quantity.value;
     const description = form.description.value;
+
     const updatedToy = {
       price,
       quantity,
@@ -32,13 +35,15 @@ const Modal = ({ toyData }) => {
             showConfirmButton: false,
             timer: 1500,
           });
+          setShouldChange(true);
+          checkRef.current.checked = false;
         }
       });
   };
 
   return (
     <>
-      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+      <input ref={checkRef} type="checkbox" id="my-modal-3" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
           <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">

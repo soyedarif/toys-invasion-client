@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Loading from "../Loading";
 
 const ToyView = ({ toy, handleDeleteData,handleUpdateDataID }) => {
+
+
   const { name, quantity, category, price, url, seller, _id, description } = toy;
  
   return (

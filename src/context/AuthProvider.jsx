@@ -13,17 +13,20 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  const updateUserProfile =(name,photo)=>{
-    setLoading(true)
-    return updateProfile(auth.currentUser,{
-        displayName:name,photoURL:photo
-    }).then(()=>{
-
-    }).catch(error=>{
-        console.log(error);
+  const updateUserProfile = (name, photo) => {
+    setLoading(true);
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo
     })
-
-}
+      .then(() => {
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        throw error;
+      });
+  };
   const signinUser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
@@ -38,7 +41,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     signOut(auth)
     .then(()=>{})
-    .error(error=>console.log(error))
+    .catch(error=>console.log(error))
 }
 
   useEffect(() => {

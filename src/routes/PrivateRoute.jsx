@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
-import { toast } from 'react-toastify';
 import Loading from '../components/Loading';
 
 const PrivateRoute = ({children}) => {
@@ -10,18 +9,8 @@ const PrivateRoute = ({children}) => {
     if(loading){
         return <Loading/>
     }
-    if(!user){
-        toast.error('Please login to View', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });
-    }else{
+    if(user){
+       
         return children;
     }
     return (

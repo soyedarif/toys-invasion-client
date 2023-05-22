@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Photo from "./Photo";
 
+
 const Gallery = () => {
   const [photos, setPhotos] = useState([]);
   useEffect(() => {
@@ -16,7 +17,7 @@ const Gallery = () => {
           Immerse Yourself in a World of Wonder and Play! Explore a captivating assortment of toys, <br /> each one a gateway to thrilling adventures and limitless possibilities.
         </p>
       </div>
-      <div className="grid grid-flow-col grid-rows-3 mb-16 md:grid-rows-2 p-6">
+      <div data-aos="fade-up" data-aos-duration="2000" className="grid grid-flow-col grid-rows-3 mb-16 md:grid-rows-2 p-6">
         {photos.map(photo => (
           <Photo key={photo._id} photo={photo}></Photo>
         ))}
