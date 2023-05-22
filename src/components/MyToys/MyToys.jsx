@@ -48,6 +48,39 @@ const MyToys = () => {
       }
     });
   };
+
+  const handleUpdateToy = e => {
+    e.preventDefault();
+    const form = e.target;
+    const price = form.price.value;
+    const quantity = form.quantity.value;
+    const description = form.description.value;
+    const updatedToy = {
+      price,
+      quantity,
+      description,
+    };
+
+    fetch(`http://localhost:5000/toys/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedToy),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your Toy has been Updated",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
   const handleUpdateDataID=id=>{
     fetch(`http://localhost:5000/toys/${id}`)
     .then(res=>res.json())
@@ -91,7 +124,7 @@ const MyToys = () => {
           </tbody>
         </table>
       </div>
-      <Modal toyData={toyData}></Modal>
+      <Modal handleUpdateToy toyData={toyData}></Modal>
     </>
   );
 };
